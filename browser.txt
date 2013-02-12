@@ -1,0 +1,21 @@
+import re, os, sys, csv
+import urllib2, cookielib, mechanize
+from time import time
+
+fda_labeler_url = 'http://www.accessdata.fda.gov/scripts/cder/ndc-old/queryndclbl.cfm'
+fda_appNum_url = 'http://www.accessdata.fda.gov/scripts/cder/drugsatfda/index.cfm?fuseaction=Search.Addlsearch_drug_name'
+fda_root1_url = 'http://www.accessdata.fda.gov/scripts/cder/drugsatfda/'
+fda_generics_url = 'http://www.accessdata.fda.gov/scripts/cder/drugsatfda/index.cfm?fuseaction=Search.Generics'
+fda_labelerName_url = 'http://www.accessdata.fda.gov/scripts/cder/ndc/labelername.cfm'
+
+br = mechanize.Browser()
+cj = cookielib.LWPCookieJar()
+br.set_cookiejar(cj)
+br.set_handle_equiv(True)
+br.set_handle_gzip(True)
+br.set_handle_redirect(True)
+br.set_handle_robots(False)   # no robots
+br.set_handle_referer(True)
+br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=10)
+br.addheaders = [('User-agent', 'Mozilla/6.0 (X11; U; i686; en-US; rv:1.9.0.1) Gecko/2008071615 OS X 10.2 Firefox/3.0.1')]
+
