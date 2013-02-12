@@ -1,0 +1,1 @@
+Always run drugDetailGatherer.py with labelerName.csv in the same directory. Otherwise program fails.
